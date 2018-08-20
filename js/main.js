@@ -76,7 +76,7 @@ function getScore() {
     localStorage.setItem("highScore", 0);
   } else {
     highScore = localStorage.getItem("highScore");
-    console.log("Yep");
+    bestScore.innerHTML = localStorage.getItem("highScore");
   }
 }
 
