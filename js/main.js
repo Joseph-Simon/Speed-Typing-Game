@@ -139,12 +139,17 @@ function countdown() {
 
 //Check game status
 function checkStatus() {
+  if (score >= highScore) {
+    updateScore();
+  }
+
   if (!isPlaying && time === 0) {
-    if (score >= highScore) {
-      localStorage.setItem("highScore", score);
-    }
     bestScore.innerHTML = localStorage.getItem("highScore");
     message.innerHTML = "Game Over";
     score = -1;
   }
+}
+
+function updateScore() {
+  localStorage.setItem("highScore", score);
 }
