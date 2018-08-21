@@ -4,7 +4,8 @@ window.addEventListener("load", init);
 const levels = {
   easy: 5,
   medium: 3,
-  hard: 2
+  hard: 2,
+  ultra: 1
 };
 
 // To change level
@@ -74,6 +75,8 @@ function init() {
 function getScore() {
   if (localStorage.getItem("highScore") === null) {
     localStorage.setItem("highScore", 0);
+    highScore = localStorage.getItem("highScore");
+    bestScore.innerHTML = highScore;
   } else {
     highScore = localStorage.getItem("highScore");
     bestScore.innerHTML = highScore;
@@ -88,6 +91,11 @@ function startMatch() {
     showWord(words);
     wordInput.value = "";
     score++;
+    if (score > highScore) {
+      localStorage.setItem("highScore", score);
+      highScore = localStorage.getItem("highScore");
+      bestScore.innerHTML = highScore;
+    }
   }
 
   if (score === -1) {
@@ -96,12 +104,18 @@ function startMatch() {
     scoreDisplay.innerHTML = score;
   }
 
-  if (score >= 6) {
+  if (score >= 9) {
+    currentLevel = levels.ultra;
+    seconds.innerHTML = 1;
+  } else if (score >= 6) {
     currentLevel = levels.hard;
+    seconds.innerHTML = 2;
   } else if (score >= 3) {
     currentLevel = levels.medium;
+    seconds.innerHTML = 3;
   } else {
     currentLevel = levels.easy;
+    seconds.innerHTML = 5;
   }
 }
 
@@ -139,17 +153,9 @@ function countdown() {
 
 //Check game status
 function checkStatus() {
-  if (score >= highScore) {
-    updateScore();
-  }
-
   if (!isPlaying && time === 0) {
     bestScore.innerHTML = localStorage.getItem("highScore");
     message.innerHTML = "Game Over";
     score = -1;
   }
-}
-
-function updateScore() {
-  localStorage.setItem("highScore", score);
 }
