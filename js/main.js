@@ -55,7 +55,22 @@ const words = [
   "trust",
   "what",
   "love",
-  "test"
+  "test",
+  "replacement",
+  "key",
+  "representative",
+  "descent",
+  "governor",
+  "bowel",
+  "note",
+  "myth",
+  "exit",
+  "accent",
+  "stuff",
+  "blind",
+  "happen",
+  "application",
+  "circulate"
 ];
 
 //Initialize Game
